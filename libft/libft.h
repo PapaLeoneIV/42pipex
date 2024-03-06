@@ -6,7 +6,7 @@
 /*   By: rileone <rileone@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 22:53:01 by rileone           #+#    #+#             */
-/*   Updated: 2024/03/05 14:18:51 by rileone          ###   ########.fr       */
+/*   Updated: 2024/03/06 12:27:29 by rileone          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,9 @@ typedef struct s_hash_map
 typedef enum s_errors
 {
 	INITIALIZATION_ERROR,
+	ALLOCATION_ERROR,
+	EXEC_ERROR,
+	INVALID_INPUT,
 }	t_errors;
 
 int	mtx_count_cols(char **mtx);
@@ -72,7 +75,7 @@ int	mtx_count_rows(char **mtx);
  *
  * @return void
  */
-void					error_fn(s_errors);
+void					error_fn(t_errors error_type);
 
 /**
  * @brief Prints an integer.

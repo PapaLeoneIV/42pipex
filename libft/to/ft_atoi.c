@@ -6,7 +6,7 @@
 /*   By: rileone <rileone@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 17:19:40 by rileone           #+#    #+#             */
-/*   Updated: 2024/02/28 15:55:40 by rileone          ###   ########.fr       */
+/*   Updated: 2024/03/06 12:27:17 by rileone          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,6 @@ int	ft_atoi(char *nptr, int *arr, char **mtx, int len)
 	}
 	res = res * isnegative;
 	if (res > 2147483647 || res < -2147483648)
-		(free(arr), ft_clear_mtx(&mtx, len), error_fn());
+		(free(arr), ft_clear_mtx(&mtx, len), error_fn(INVALID_INPUT));
 	return (res);
 }

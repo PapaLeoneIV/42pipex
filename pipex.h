@@ -6,7 +6,7 @@
 /*   By: rileone <rileone@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 10:08:29 by rileone           #+#    #+#             */
-/*   Updated: 2024/03/05 14:18:43 by rileone          ###   ########.fr       */
+/*   Updated: 2024/03/06 13:40:02 by rileone          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 typedef struct s_pipex
 {
 	pid_t	pid;
+	pid_t	pid2;
 
 	int		fd;
 	int		fd2;
@@ -34,7 +35,6 @@ typedef struct s_pipex
 	char	**env;
 
 	char	*infile;
-
 	char	*outfile;
 
 	char	**cmd;
@@ -43,10 +43,6 @@ typedef struct s_pipex
 	int		pipe[2];
 	
 	int		counter;
-
-	int		flag;
-
-	
 }		t_pipex;
 
 #endif
