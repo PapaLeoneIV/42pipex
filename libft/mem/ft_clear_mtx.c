@@ -17,6 +17,8 @@ void	ft_clear_mtx(char ***mtx, int len)
 	int	i;
 
 	i = 0;
+	if (!mtx || !(*mtx) || !(**mtx))
+		return ;
 	while (i < len)
 	{
 		free(*(*mtx + i));
