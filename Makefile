@@ -11,6 +11,7 @@ COMPILE = $(CC) $(CFLAGS)
 ARCHIVE = ar rcs
 
 SRC = pipex.c \
+		pipex_utils.c \
 
 OBJ = ${SRC:.c=.o}
 
