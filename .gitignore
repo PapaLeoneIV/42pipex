@@ -1,4 +1,4 @@
-.txt
+*.txt
 .vscode/
-.json
+*.json
 pipex-tester/
