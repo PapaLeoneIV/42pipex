@@ -6,10 +6,9 @@
 /*   By: rileone <rileone@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 10:08:29 by rileone           #+#    #+#             */
-/*   Updated: 2024/03/06 13:40:02 by rileone          ###   ########.fr       */
+/*   Updated: 2024/03/10 16:43:04 by rileone          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef PIPEX_H
 # define PIPEX_H
@@ -22,7 +21,6 @@
 # include <fcntl.h>
 # include <sys/types.h>
 # include <sys/wait.h>
-
 
 typedef struct s_pipex
 {
@@ -43,7 +41,7 @@ typedef struct s_pipex
 
 int		ft_initialize(t_pipex *var, int argc, char **argv);
 char	*ft_return_cmd(t_pipex *var, char **argv);
-void	ft_free_ever(t_pipex *var);
-
+void	ft_free_ever(t_pipex *var, t_state state);
+int		ft_execute_son(t_pipex *var);
 
 #endif

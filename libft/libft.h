@@ -6,12 +6,11 @@
 /*   By: rileone <rileone@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 22:53:01 by rileone           #+#    #+#             */
-/*   Updated: 2024/03/06 12:27:29 by rileone          ###   ########.fr       */
+/*   Updated: 2024/03/10 16:41:31 by rileone          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-# ifndef LIBFT_H
+#ifndef LIBFT_H
 # define LIBFT_H
 
 # include "./gnl/get_next_line_bonus.h"
@@ -58,8 +57,7 @@ typedef struct s_hash_map
 	struct s_item		**array;
 }						t_hash_map;
 
-
-typedef enum s_errors
+typedef enum e_errors
 {
 	INITIALIZATION_ERROR,
 	ALLOCATION_ERROR,
@@ -67,8 +65,15 @@ typedef enum s_errors
 	INVALID_INPUT,
 }	t_errors;
 
-int	mtx_count_cols(char **mtx);
-int	mtx_count_rows(char **mtx);
+typedef enum e_state
+{
+	SUCCESS,
+	FAILURE,
+	CONTINUE,
+}	t_state;
+
+int						mtx_count_cols(char **mtx);
+int						mtx_count_rows(char **mtx);
 
 /**
  * @brief Prints an error message.

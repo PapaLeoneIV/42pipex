@@ -6,11 +6,11 @@
 /*   By: rileone <rileone@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 17:19:40 by rileone           #+#    #+#             */
-/*   Updated: 2024/03/06 12:27:17 by rileone          ###   ########.fr       */
+/*   Updated: 2024/03/10 16:33:39 by rileone          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "libft.h"
+#include "libft.h"
 
 int	ft_atoi(char *nptr, int *arr, char **mtx, int len)
 {
