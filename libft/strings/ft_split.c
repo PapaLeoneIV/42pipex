@@ -73,6 +73,8 @@ char	**ft_split(char const *s, char c)
 	length = 0;
 	i = 0;
 	len = count_words(s, c);
+	if (!len)
+		return (NULL);
 	res = (char **)ft_calloc((len + 1), sizeof(char *));
 	if (!res)
 		return (NULL);

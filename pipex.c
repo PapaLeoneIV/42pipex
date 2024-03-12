@@ -6,7 +6,7 @@
 /*   By: rileone <rileone@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 11:15:31 by rileone           #+#    #+#             */
-/*   Updated: 2024/03/10 16:42:19 by rileone          ###   ########.fr       */
+/*   Updated: 2024/03/10 17:13:15 by rileone          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,14 @@ void	exec_fork(t_pipex *var)
 	waitpid(var->pid, NULL, 0);
 }
 
-int	main(int argc, char **argv)
+int	main(int argc, char **argv, char **envp)
 {
 	t_pipex	var;
 
 	var = (t_pipex){0};
 	if (argc < 5 || !argv || !(*argv))
 		return (EXIT_FAILURE);
-	if (ft_initialize(&var, argc, argv) == 0)
+	if (ft_initialize(&var, argc, argv, envp) == 0)
 		ft_free_ever(&var, FAILURE);
 	while (var.counter < argc - 3)
 	{

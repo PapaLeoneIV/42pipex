@@ -6,7 +6,7 @@
 /*   By: rileone <rileone@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 16:43:30 by rileone           #+#    #+#             */
-/*   Updated: 2024/03/10 16:45:17 by rileone          ###   ########.fr       */
+/*   Updated: 2024/03/10 17:14:11 by rileone          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,28 @@ void	ft_free_ever(t_pipex *var, t_state state)
 		exit(state);
 }
 
-int	ft_initialize(t_pipex *var, int argc, char **argv)
+char	*getenv_string(char **envp)
+{
+	int	i;
+
+	i = 0;
+	while (envp[i])
+	{
+		if (ft_strncmp(envp[i], "PATH=", 5) == 0)
+			return (envp[i] + 5);
+		i++;
+	}
+	return (NULL);
+}
+
+int	ft_initialize(t_pipex *var, int argc, char **argv, char **envp)
 {
 	int	i;
 
 	i = -1;
 	if (pipe(var->pipe) == -1)
 		return (0);
-	var->envstring = getenv("PATH");
+	var->envstring = getenv_string(envp);
 	if (!var->envstring)
 		return (0);
 	var->envmtx = ft_split(var->envstring, ':');
