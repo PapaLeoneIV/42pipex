@@ -6,7 +6,7 @@
 /*   By: rileone <rileone@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 22:53:01 by rileone           #+#    #+#             */
-/*   Updated: 2024/03/10 16:41:31 by rileone          ###   ########.fr       */
+/*   Updated: 2024/03/18 09:54:38 by rileone          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,14 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <limits.h>
+
+typedef struct s_split_var
+{
+	int	len;
+	int	length;
+	int	j;
+	int	i;
+}	t_split_var;
 
 typedef struct s_lis_var
 {
