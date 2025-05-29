@@ -36,7 +36,7 @@ typedef struct s_pipex
 	char	*envstring;
 	char	**env;
 	char	**cmd;
-	char	**envmtx;	
+	char	**pathmtx;	
 }		t_pipex;
 
 int		ft_initialize(t_pipex *var, int argc, char **argv, char **envp);

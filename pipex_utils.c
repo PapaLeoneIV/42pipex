@@ -12,10 +12,10 @@
 
 #include "pipex.h"
 
-char	*ft_return_cmd(t_pipex *var, char **argv)
+char *ft_return_cmd(t_pipex *var, char **argv)
 {
-	int		i;
-	char	*tmpcmd;
+	int i;
+	char *tmpcmd;
 
 	i = 0;
 	var->cmd = ft_split(argv[var->counter + 2], ' ');
@@ -34,11 +34,11 @@ char	*ft_return_cmd(t_pipex *var, char **argv)
 	return (NULL);
 }
 
-void	ft_free_ever(t_pipex *var, t_state state)
+void ft_free_ever(t_pipex *var, t_state state)
 {
 	ft_clear_mtx(&var->env, mtx_count_rows(var->env));
 	ft_clear_mtx(&var->cmd, mtx_count_rows(var->cmd));
-	ft_clear_mtx(&var->envmtx, mtx_count_rows(var->envmtx));
+	ft_clear_mtx(&var->pathmtx, mtx_count_rows(var->pathmtx));
 	free(var->infile);
 	free(var->outfile);
 	free(var->tmpcmd);
@@ -46,23 +46,23 @@ void	ft_free_ever(t_pipex *var, t_state state)
 		exit(state);
 }
 
-char	*getenv_string(char **envp)
+char *getenv_string(char **envp)
 {
-	int	i;
+	int i;
 
 	i = 0;
 	while (envp[i])
 	{
-		if (ft_strncmp(envp[i], "PATH=", 5) == 0)
-			return (envp[i] + 5);
+		if (ft_strncmp(envp[i], "PATH=", ft_strlen("PATH=")) == 0)
+			return (envp[i] + ft_strlen("PATH="));
 		i++;
 	}
 	return (NULL);
 }
 
-int	ft_initialize(t_pipex *var, int argc, char **argv, char **envp)
+int ft_initialize(t_pipex *var, int argc, char **argv, char **envp)
 {
-	int	i;
+	int i;
 
 	i = -1;
 	if (pipe(var->pipe) == -1)
@@ -70,28 +70,28 @@ int	ft_initialize(t_pipex *var, int argc, char **argv, char **envp)
 	var->envstring = getenv_string(envp);
 	if (!var->envstring)
 		return (0);
-	var->envmtx = ft_split(var->envstring, ':');
-	if (var->envmtx == NULL)
+	var->pathmtx = ft_split(var->envstring, ':');
+	if (var->pathmtx == NULL)
 		ft_free_ever(var, FAILURE);
-	var->env = ft_calloc(mtx_count_rows(var->envmtx) + 1, sizeof(char *));
+	var->env = ft_calloc(mtx_count_rows(var->pathmtx) + 1, sizeof(char *));
 	if (var->env == NULL)
 		ft_free_ever(var, FAILURE);
-	while (var->envmtx[++i] != NULL)
-		var->env[i] = ft_strjoin(var->envmtx[i], "/");
+	while (var->pathmtx[++i] != NULL)
+		var->env[i] = ft_strjoin(var->pathmtx[i], "/");
 	var->fd = open(argv[1], O_RDONLY);
 	var->fd2 = open(argv[argc - 1], O_CREAT | O_WRONLY | O_TRUNC, 0644);
-	ft_clear_mtx(&var->envmtx, mtx_count_rows(var->envmtx));
 	if (var->fd == -1 || var->fd2 == -1)
 		ft_free_ever(var, FAILURE);
+	ft_clear_mtx(&var->pathmtx, mtx_count_rows(var->pathmtx));
 	return (1);
 }
 
-int	ft_execute_son(t_pipex *var)
+int ft_execute_son(t_pipex *var)
 {
 	if (var->counter == 0)
 	{
-		dup2(var->fd, STDIN_FILENO);
 		dup2(var->pipe[1], STDOUT_FILENO);
+		dup2(var->fd, STDIN_FILENO);
 		close(var->pipe[0]);
 	}
 	else

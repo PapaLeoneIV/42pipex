@@ -64,20 +64,14 @@ char	**ft_split(char const *s, char c)
 		if (res[var.j] == NULL)
 			return (ft_clear_mtx(&res, var.len), NULL);
 		var.i += var.length;
+		var.j++;
 	}
+
 	return (res);
 }
-/*
- static void	ft_print_res(char const *s)
- {
-	int		len;
 
-	len = 0;
-	while (s[len])
-		len++;
-	write(1, s, len);
-	write(1, "\n", 1);
- }
+
+ /*
  int main()
  {
 	char *str = "    abcde fghil    ";
